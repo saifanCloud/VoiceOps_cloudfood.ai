@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "inventoryItem": {
+      "title": "Inventory Item",
+      "description": "An inventory item in the shop with quantity tracking",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the item"
+        },
+        "qty": {
+          "type": "integer",
+          "description": "Available stock quantity"
+        },
+        "price": {
+          "type": "integer",
+          "description": "Price of the item in Rupiah"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the item (e.g., makanan, minuman, bahan)"
+        }
+      },
+      "required": ["name", "qty", "category", "price"]
+    },
+    "order": {
+      "title": "Order",
+      "description": "A customer order from a table",
+      "type": "object",
+      "properties": {
+        "meja": {
+          "type": "string",
+          "description": "Table identifier or number"
+        },
+        "items": {
+          "type": "array",
+          "description": "List of ordered items",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "qty": {
+                "type": "integer"
+              },
+              "price": {
+                "type": "integer",
+                "description": "Price of the item in Rupiah at order time"
+              }
+            },
+            "required": ["name", "qty"]
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the order",
+          "enum": ["active", "completed"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the order was created"
+        }
+      },
+      "required": ["meja", "items", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "inventory/{itemId}": {
+      "schema": "inventoryItem",
+      "description": "Collection of items in the menu/stock with their current quantity"
+    },
+    "orders/{orderId}": {
+      "schema": "order",
+      "description": "Collection of customer orders"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net - Default Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Inventory Collection - Allows read and write operations
+    match /inventory/{itemId} {
+      allow read, write: if true;
+    }
+
+    // 3. Orders Collection - Allows read and write operations
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+  }
+}

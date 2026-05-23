@@ -1,0 +1,6 @@
+{
+  "name": "cloudfood.Ai",
+  "description": "Asisten operasional cerdas berbasis suara berbasis kecerdasan buatan untuk warung dan UMKM kuliner.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
